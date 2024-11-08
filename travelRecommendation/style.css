@@ -17,9 +17,9 @@ body {
 
 .topmenu {
   color: lightgray;
-  margin: 10px;
-  padding: 20px;
-  font-size: 20px;
+  margin: 20px;
+  padding: 5px;
+  font-size: 15px;
   text-decoration:none;
 }
 
@@ -30,7 +30,7 @@ body {
 
 .topdiv {
   float: right;
-  padding-right: 1cm;
+  padding-right: 20cm;
 }
 
 .profile_name {
