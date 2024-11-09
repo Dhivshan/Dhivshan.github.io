@@ -1,28 +1,45 @@
-function addRecommendation() {
-    // Get the message of the new recommendation
-    let recommendation = document.getElementById("new_recommendation");
-    // If the user has left a recommendation, display a pop-up
-    if (recommendation.value != null && recommendation.value.trim() != "") {
-      console.log("New recommendation added");
-      //Call showPopup here
-  
-      // Create a new 'recommendation' element and set it's value to the user's message
-      var element = document.createElement("div");
-      element.setAttribute("class","recommendation");
-      element.innerHTML = "\<span\>&#8220;\</span\>" + recommendation.value + "\<span\>&#8221;\</span\>";
-      // Add this element to the end of the list of recommendations
-      document.getElementById("all_recommendations").appendChild(element); 
-      
-      // Reset the value of the textarea
-      recommendation.value = "";
+function showtravelDetails(event) {
+      event.preventDefault();
+      const city = document.getElementById('city').value;
+      fetch('./travel_recommendation_api.json')
+    .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((data) =>
+                    console.log(data))
+                .catch((error) =>
+                    console.error("Unable to fetch data:", error));
+        }
+        
+    document.getElementById('recForm').addEventListener('submit',showtravelDetails );
+
+    /* Search Form*/
+
+    function showsearchDetails(event) {
+        event.preventDefault();
+        const search = document.getElementById('search').value;
+        fetch('./travel_recommendation_api.json')
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error
+                    (`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then((data) =>
+            console.log(data))
+        .catch((error) =>
+            console.error("Unable to fetch data:", error));
+}
+      document.getElementById('searchForm').addEventListener('submit',showsearchDetails );
+
+
+      function resetDet(){
+        document.getElementById('search').value=""; 
+        alert("Reset done");
+    
     }
-  }
-  
-  function showPopup(bool) {
-    if (bool) {
-      document.getElementById('popup').style.visibility = 'visible'
-    } else {
-      document.getElementById('popup').style.visibility = 'hidden'
-    }
-  }
-  
